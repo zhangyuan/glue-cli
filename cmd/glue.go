@@ -44,7 +44,7 @@ func run(jobName string) error {
 	t.AppendHeader(table.Row{"#", "Run Id", "State", "Completed On"})
 
 	for index, jr := range runsOutput.JobRuns {
-		t.AppendRow([]interface{}{index, *jr.Id, *jr.JobRunState, jr.CompletedOn})
+		t.AppendRow([]interface{}{index, *jr.Id, *jr.JobRunState, jr.CompletedOn.Local()})
 	}
 	t.SetStyle(table.StyleLight)
 	t.Render()
