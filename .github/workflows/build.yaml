@@ -18,3 +18,8 @@ jobs:
         version: v1.45
     - run: go mod download
     - run: make release
+    - uses: actions/upload-artifact@v3
+      with:
+        name: binaries
+        path: build/glue-*
+        retention-days: 5
