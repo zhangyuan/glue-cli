@@ -11,7 +11,7 @@ glue-linux_amd64:
 darwin_amd64:
 	env GOOS=darwin GOARCH=amd64 go build -ldflags "-w" -o build/glue-darwin_amd64 cmd/glue.go
 windows_amd64:
-	env GOOS=windows GOARCH=amd64 go build -ldflags "-w" -o build/glue-windows_amd64 cmd/glue.go
+	env GOOS=windows GOARCH=amd64 go build -ldflags "-w" -o build/glue-windows_amd64.exe cmd/glue.go
 compress:
 	upx build/glue-* 
 
