@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"bytes"
@@ -11,18 +11,22 @@ import (
 	"github.com/aws/aws-sdk-go/service/glue"
 	"github.com/jedib0t/go-pretty/v6/table"
 	"github.com/pkg/errors"
+	"github.com/spf13/cobra"
 )
 
-func main() {
-	if len(os.Args) != 2 {
-		log.Fatalln("job name is not provided")
-	}
+// jobCmd represents the job command
+var jobCmd = &cobra.Command{
+	Use: "job",
+	Run: func(cmd *cobra.Command, args []string) {
+		jobName := args[0]
+		if err := run(jobName); err != nil {
+			log.Fatalln(err.Error())
+		}
+	},
+}
 
-	jobName := os.Args[1]
-
-	if err := run(jobName); err != nil {
-		log.Fatalln(err.Error())
-	}
+func init() {
+	rootCmd.AddCommand(jobCmd)
 }
 
 func run(jobName string) error {
